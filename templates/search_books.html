@@ -1,0 +1,45 @@
+{% extends "layout.html" %} {% block title %} Search Books {% endblock %} {% block main %}
+
+<div class="container mt-3 mt-lg-5 ">
+
+
+    <form class="form" action="/search_books" method="post">
+
+        <div class="input-group w-75 mx-auto">
+            <input id="books-search" name="query" value="{{query}}" type="text" class="form-control" placeholder="Enter a book name">
+            <div class="input-group-append">
+                <span class="input-group-text"><button class="btn-inline px-lg-3 px-1 py-0" onclick="searchBooks()"><i
+                            class="fas fa-search"></i></button></span>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div class="container mt-3 mb-5 {{ 'd-flex' if books else 'd-none' }}">
+
+    <div class="mx-auto w-75">
+        <ul class="list-group">
+            {% for book in books %}
+            <div class="list-group-item selectable" onclick="window.location.href='/ask_question?book_id={{ book.id }}'">
+                <div class="row">
+                    <div class="col-12 col-md-2 text-center">
+                        {% if ("image_url" in book.keys()) %}
+                        <img class="img-fluid rounded" src="{{book.image_url}}" alt="book cover of {{book.name}}"> {% endif %}
+                    </div>
+                    <div class="col p-1">
+                        {{book.name}}
+                        <br />
+                        <small>
+                            {% for author in book.author_names %} {{ author }}, {% endfor %}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </ul>
+
+    </div>
+</div>
+
+{% endblock %}

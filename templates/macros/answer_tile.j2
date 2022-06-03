@@ -1,0 +1,76 @@
+{% macro answer_tile(answer,username='',show_vote_buttons=True) %}
+
+<div class="container">
+    <div class="card mx-auto mb-3">
+
+
+        <div class="card-body row h-100 answer">
+            <div class="col-lg-10 col-12">
+
+                <h5>{{ answer.answer }}</h5>
+
+                {% if username != '' %}
+                <small>{{ username }} | {{ answer.date|universal_date }}</small>
+                {% else %}
+                <small>{{ answer.username }} | {{ answer.date|universal_date }}</small>
+                {% endif %}
+            </div>
+
+            {% if show_vote_buttons %}
+
+                <div class="col-lg-1 col-2 text-right align-items-center h-100 pt-lg-4">
+                    <h3>{{ answer.upvotes|length - answer.downvotes|length }}</h3>
+                </div>
+
+            {% else %}
+
+                <div class="col-lg-1 col-2 text-right align-items-center h-100 pt-lg-4">
+                    <h3>{{ answer.score }}</h3>
+                </div>
+
+            {% endif %}
+
+            {% if show_vote_buttons %}
+            <div class="col-lg-1 col-2 text-center d-inline-flex flex-row flex-lg-column">
+
+                {% if answer.user_id != session['user_id'] %} {% if {'voter_id':session.user_id} in answer.upvotes %}
+                <h2>
+                    <a href="/upvote_answer?answer_id={{answer.id}}"><i class="text-success fa fa-arrow-circle-up"></i>
+                    </a>
+                </h2>
+                {% else %}
+                <h2>
+                    <a href="/upvote_answer?answer_id={{answer.id}}"><i class="text-primary fa fa-arrow-circle-up"></i>
+                    </a>
+                </h2>
+                {% endif %} {% if {'voter_id':session.user_id} in answer.downvotes %}
+                <h2>
+                    <a href="/downvote_answer?answer_id={{answer.id}}"><i
+                            class="text-success fa fa-arrow-circle-down"></i> </a>
+                </h2>
+                {% else %}
+                <h2>
+                    <a href="/downvote_answer?answer_id={{answer.id}}"><i
+                            class="text-primary fa fa-arrow-circle-down"></i> </a>
+                </h2>
+                {% endif %} {% else %}
+                <h2>
+                    <a disabled><i class="text-muted fa fa-arrow-circle-up"></i> </a>
+                </h2>
+                <h2>
+                    <a disabled><i class="text-muted fa fa-arrow-circle-down"></i> </a>
+                </h2>
+                {% endif %}
+
+
+
+
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+</div>
+
+{% endmacro %}

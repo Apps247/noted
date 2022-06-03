@@ -1,0 +1,32 @@
+{% extends "layout.html" %} {% block title %} Account {% endblock %} {% block main %}
+
+<div class="container">
+    <div class="card mx-auto mb-3">
+
+        <div class="card-body">
+
+            <h4 class="pb-2">{{ user_data.username }}</h4>
+
+            <table class="table table-striped">
+                <tr>
+                    <td>Questions Asked</td>
+                    <td>{{ user_data.question_count }}</td>
+                    <td class="text-right"><a href="/my_questions" class="btn btn-primary">View</a></td>
+                </tr>
+                <tr>
+                    <td>Answers Published</td>
+                    <td>{{ user_data.answer_count }}</td>
+                    <td class="text-right"><a href="/my_answers" class="btn btn-primary">View</a></td>
+                </tr>
+                <tr>
+                    <td>Upvote Score</td>
+                    <td>{{ user_data.score }}</td>
+                    <td></td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5"><a href="/logout" class="btn btn-secondary">Log out</a></div> {% endblock %}

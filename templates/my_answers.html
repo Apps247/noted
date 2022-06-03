@@ -1,0 +1,19 @@
+{% extends "layout.html" %} {% block title %} Answer Question {% endblock %} 
+
+{% block main %}
+
+<div class="container mt-3">
+    {% from 'macros/answer_tile.j2' import answer_tile %} 
+    {% from 'macros/question_tile.j2' import question_tile %} 
+    {% for question in questions %}
+        <div class="mt-5">
+        <div class="divider"></div>
+        {{ question_tile(question, question.answers|length, True) }} 
+        </div>
+        {% for answer in question.answers %} 
+            {{answer_tile(answer,username,False)}} 
+        {% endfor %} 
+    {% endfor %}
+</div>
+    
+{% endblock %}

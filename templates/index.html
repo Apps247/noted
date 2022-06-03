@@ -1,0 +1,8 @@
+{% extends "layout.html" %} {% block title %} Home {% endblock %} {% block main %}
+
+{% from 'macros/question_tile.j2' import question_tile %}
+{% for question in questions %}
+
+{{question_tile(question,question.answer_count)}}
+
+{% endfor %} {% endblock %}

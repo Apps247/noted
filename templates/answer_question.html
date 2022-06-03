@@ -1,0 +1,30 @@
+{% extends "layout.html" %} {% block title %} Answer Question {% endblock %} {% block main %} {% from 'macros/answer_tile.j2' import answer_tile %}
+
+{% from 'macros/question_tile.j2' import question_tile %} 
+
+{{question_tile(question, answers|length)}} 
+
+<form action="/answer_question?question_id={{ question.id }}" , method="post">
+    <div class="container mx-auto my-3">
+
+        <!-- todo: Card code attribution -->
+        <div class="card mx-auto ">
+            <div class="card-body ">
+                <h5 class="card-title ">Answer This Question</h5>
+
+                <div class="form-group"><label>Please include relevant details in your answer. You may include URLs for
+                        context and clarity, but please do not include URLs to undesirable material.</label>
+                    <textarea name="answer" class="form-control" cols="30" rows="5"></textarea>
+                </div>
+
+                <button class="btn btn-primary" type="submit">
+                    Submit
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+</form>
+
+{% for answer in answers %} {{answer_tile(answer)}} {% endfor %} {% endblock %}

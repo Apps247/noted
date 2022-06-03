@@ -1,0 +1,35 @@
+{% macro question_tile(question, answer_count, minimal=False) %}
+
+<div class="container">
+    <div class="selectable question card mx-auto mb-3" onclick="window.location.href='/answer_question?question_id={{ question.id }}'">
+
+        {% if not minimal %}
+        <img src="{{question.book_image_url}} " alt="book cover of {{question.book_name}} ">
+        {% endif %}
+
+        <div class="card-body">
+
+
+            <div class="d-flex">
+                <a href="{{question.book_preview_url}}">
+                    <h6 class="mr-2">{{ question.book_name }}</h6>
+                </a>
+                {% if question.chapter_number is not none %}
+                <small>Chapter {{ question.chapter_number }}</small>
+                {% endif %}
+            </div>
+            <h4>{{ question.question }}</h4>
+
+        {% if not minimal %}
+            <p>{{question.username}} | {{question.date|universal_date}}</p>
+            <h6 class="mr-5">{{ answer_count }} Answers</h6>
+        {% endif %}
+
+
+  
+
+        </div>
+    </div>
+</div>
+
+{% endmacro %}

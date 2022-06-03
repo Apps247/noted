@@ -1,0 +1,52 @@
+{% extends "layout.html" %} {% block title %} Ask a Question {% endblock %} {% block main %}
+
+<!-- <script src="../static/utility.js"></script> -->
+
+<form action="/ask_question?book_id={{ book.id }}" , method="post">
+
+    <div class="container row mx-auto mt-3">
+        <div class="col-lg-4">
+            <!-- todo: Card code attribution -->
+            <div class=" chapter-input card mx-auto ">
+                <img class="card-img-top " src="{{book.image_url}} " alt="book cover of {{book.name}} ">
+                <div class="card-body ">
+                    <h5 class="card-title ">{{ book.name }}</h5>
+
+                    <div class="input-group pl-md-2 pt-md-0 pt-2 inline">
+                        <input autocomplete="off " autofocus class="form-control " name="chapter_number" placeholder="Chapter Number " type="number " min="1 ">
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-lg-8 mt-lg-0 mt-3 ">
+            <div class="card mx-auto ">
+                <div class="card-body ">
+                    <h5 class="card-title ">What's your doubt?</h5>
+                    <div class="input-group mb-3">
+                        <input autocomplete="off " autofocus class="form-control " name="question" placeholder="Enter Question" type="text">
+                    </div>
+                    <button class="btn btn-primary " type="submit">Ask</button>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</form>
+
+<div class="container row mt-5 d-none ">
+    <div class="col-12 ">
+        <div class="card mx-auto ">
+            <div class="card-body ">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

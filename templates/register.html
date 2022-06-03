@@ -1,0 +1,37 @@
+{% extends "layout.html" %} {% block title %} Register {% endblock %} {% block main %}
+
+
+<div class="container">
+    <div class="card mx-auto mt-lg-5 mt-3 mb-3 col-lg-7">
+        <div class="card-body">
+
+
+            <form action="/register" , method="post">
+
+                <div class="input-group pt-md-0 pt-2 my-3 inline">
+                    <input autocomplete="off " autofocus class="form-control " name="username" placeholder="Enter username" type="text" required>
+                </div>
+                <div class="input-group pt-md-0 pt-2 my-3 inline">
+                    <input autocomplete="off " autofocus class="form-control " name="password" placeholder="Enter password" type="password" required>
+                </div>
+                <div class="input-group pt-md-0 pt-2 my-3 inline">
+                    <input autocomplete="off " autofocus class="form-control " name="confirm-password" placeholder="Confirm password" type="password" required>
+                </div>
+
+                <button class="btn btn-primary" type="submit">
+                    Submit
+                </button>
+
+                <div class="mt-3">
+                    <a href="/login">Already have an account? Log In</a>
+                </div>
+
+            </form>
+
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

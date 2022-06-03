@@ -1,0 +1,27 @@
+{% extends "layout.html" %} {% block title %} Search {{query}} {% endblock %} {% block main %}
+
+<div class="container">
+    <div class="d-flex flex-row book-display-minimal my-5">
+    {% for book in books %}
+        <div class="selectable card mr-3", style="width: 200px", onclick="window.location.href='/questions?book_id={{ book.id }}'">
+                <img src="{{book.image_url}}" alt="Cover image of {{book.name}} by {% for author in book.author_names %} {{ author }}, {% endfor %}" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{book.name}}
+                </h5>
+                <small>
+                {% for author in book.author_names %} {{ author }}, {% endfor %}
+                </small>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+
+{% from 'macros/question_tile.j2' import question_tile %}
+{% for question in questions %}
+
+{{question_tile(question,question.answer_count)}}
+
+{% endfor %} {% endblock %}
