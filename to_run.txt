@@ -1,2 +1,2 @@
-export API_KEY=AIzaSyBfyA2OuCtAzqKp2lpeMMfcotwdxL_Yn7Q
+export API_KEY=HIDDEN
 export FLASK_ENV=development
